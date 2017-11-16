@@ -25,6 +25,8 @@ df.plot <- subset(df.fin); df.plot$plotvar <- df.plot$VRATE.TOT; numcolor <- 5; 
 plotcolor <- brewer.pal(numcolor, 'YlGn'); df.plot$colorcode <- plotcolor[df.plot$colornum]; plotcolor; table(df.plot$colornum);
 breaks.vector <- round(as.numeric(breaks)[2:(length(breaks)-1)], 0); legend.vector <- rep(NA, numcolor); legend.vector[1] <- paste0('<', breaks.vector[1]); legend.vector[numcolor] <- paste0('>', breaks.vector[length(breaks.vector)]);
 for (i in 2:(length(legend.vector)-1)){legend.vector[i] <- paste0(breaks.vector[i-1], '-', breaks.vector[i])}; legend.vector <- paste0('  ', legend.vector, '%');
+
+#### SPECIFY THE YEAR AND AGE GROUP WE WANT TO MAP; TOGGLE PARAMETERS TO GENERATE ALL SIX MAPS
 df.plot.actual <- subset(df.plot, YEAR == 'Y2012' & AGE.NEW == 'AB1_18_24'); nrow(df.plot.actual);
 g1 <- ggplot(df.plot.actual, aes(map_id = STATE)) + coord_map() +
   geom_map(data = df.plot.actual, map = fifty_states, aes(fill = df.plot.actual$colorcode), colour = 'gray') +
